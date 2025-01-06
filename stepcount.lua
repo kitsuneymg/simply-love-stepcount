@@ -1,6 +1,6 @@
 local t = {}
 
-t["ScreenProfileSave"] = Def.ActorFrame {
+t["ScreenEvaluationSummary"] = Def.ActorFrame {
 	ModuleCommand=function(self)
 	    local DateFormat = "%04d%02d%02d-%02d%02d%02d"
         local DateFormat2 = "%04d-%02d-%02d %02d:%02d:%02d"
