@@ -14,16 +14,10 @@ local function write_step_count(filename)
         local content = { }
         local profileDir  = PROFILEMAN:GetProfileDir(profileSlot[player])
         for i,stats in pairs( SL[ToEnumShortString(player)].Stages.Stats ) do
-            if stats and stats.column_judgments then
-                for column, judgments in ipairs(stats.column_judgments) do
-                    for judgment, judgment_count in pairs(judgments) do
-                        -- Early hits are a stored in a table, we want to ignore those for this calculation.
-                        if type(judgment_count) == "number" then
-                            if string.len(judgment) == 2 then
-                                notesHitThisGame = notesHitThisGame + judgment_count
-                            end
-                        
-                        end
+            if stats and stats.judgments then
+                for judgment, judgment_count in pairs(stats.judgments) do
+                    if string.len(judgment) == 2 then
+                        notesHitThisGame = notesHitThisGame + judgment_count
                     end
                 end
             end
@@ -36,6 +30,7 @@ local function write_step_count(filename)
             f:Write(JsonEncode(content, true))
         end
         f:destroy()
+        SM("Writing step count of " .. notesHitThisGame)
     end
 end
 
@@ -47,10 +42,17 @@ t["ScreenTitleMenu"] = Def.ActorFrame {
         local datestr = DateFormat:format(Year(), MonthOfYear()+1, DayOfMonth(), Hour(), Minute(), Second())        
         local filename = "steps-" .. datestr .. ".json"
         t["filename"] = filename
+        SM("Initializing step count module: " .. datestr)
     end
 }
 
 t["ScreenEvaluationStage"] = Def.ActorFrame {
+	ModuleCommand=function(self)
+	    write_step_count(t["filename"])
+    end
+}
+
+t["ScreenEvaluationSummary"] = Def.ActorFrame {
 	ModuleCommand=function(self)
 	    write_step_count(t["filename"])
     end
