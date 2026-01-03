@@ -17,4 +17,8 @@ This will create a folder name 'Sl-Steps' in your profile. Inside, it will creat
 * Enjoy!
 
 # Notes
-If you need to quit a song early, don't use ESC or ScrollLock. Hold enter until it fails to Eval Screen. Otherwise, the notes don't get saved by the game.
+
+* If you need to quit a song early, don't use ESC or ScrollLock. Hold enter until it fails to Eval Screen. Otherwise, the notes don't get saved by the game.
+* Restarting a song will not save notes hit
+* Jumps/etc are too ahrd for me to tell from brackets. So jumps are 1 step, since I generally play songs with more BR in them.
+* This is *not* how Simply Love counts steps. That step count is *notes* hit, and thus counts a bracket as 2 (or more) notes.
